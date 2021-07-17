@@ -5,6 +5,17 @@ function UseFormValidation(initialState,validate,authenticate){
     const[isSubmitting, setIsSubmitting] = React.useState(false);
     const[errors, setErrors] = React.useState({});
 
+    React.useEffect(() =>{
+       if(isSubmitting){
+            const noErrors = Object.keys(errors).length === 0;
+            if(noErrors){
+                authenticate();
+                setIsSubmitting(false);
+            }
+       }
+       
+    },[errors])
+
     function handleChange(event){
         event.persist();
         setValues(previousValues =>({
