@@ -25,7 +25,7 @@ function Header(){
             {user &&
                 <NavLink to='/create' className='header-link'>
                     submit
-                </NavLink>  
+                </NavLink>      
             }  
         </div>
       <div className='flex'>
