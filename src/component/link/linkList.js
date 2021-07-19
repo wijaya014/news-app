@@ -48,7 +48,7 @@ function LinkList(props) {
     const links = snapshot.docs.map(doc => {
       return {id: doc.id, ...doc.data()}
     })
-    const lastLink = links[links.length -1]
+    const lastLink = links[links.length-1]
     setLinks(links);
     setCursor(lastLink);
     setLoading(false);

@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import { getDomain } from '../../util';
 import { FirebaseContext } from '../../firebase'
 function LinkItem({link, index, showCount, history}){
     const{ firebase, user } = React.useContext(FirebaseContext);
@@ -35,6 +37,28 @@ function LinkItem({link, index, showCount, history}){
             <div className='flex items-center'>
                 {showCount && <span className='grey'>{index}.</span>}
                 <div className='voted-button' onClick={handleVote}>Δ</div>
+            </div>
+            <div className='ml1'>
+                <a href={link.url} className='black no-underline'>{link.description}</a>
+                <span className='link'>({getDomain(link.url)})</span>
+            </div>
+            <div className='f6 1h-copy gray'>
+                {link.voteCount} votes {link.postedByName} {link.created}
+                {'|'}
+                <Link to={`/link/${link.id}`}>
+                    {
+                        link.comments.length > 0 ?
+                         `${link.comments.length} comments` : 'discuss'
+                    }
+                </Link>
+                {
+                    postByAuthUser && (
+                        <>
+                          {'|'}
+                          <span onClick={handleDelete}>delete</span>
+                        </>
+                    )
+                }
             </div>
         </div>
     )
