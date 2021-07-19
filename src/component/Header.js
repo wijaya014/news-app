@@ -7,18 +7,18 @@ function Header(){
     return(
     <div className='header'>
         <div className='flex'>
-            <img src='/logo.png' alt='Hooks News Logo' className='logo' />
+            <img src='/logo.png' alt='logo' className='logo' />
             <NavLink to='/' className='header-title'>
             Hooks news
             </NavLink>
             <NavLink to='/' className='header-link'>
             news
             </NavLink>
-            
+            <div className='divider'>|</div>
             <NavLink to='/top' className='header-link'>
             top
             </NavLink>
-            
+            <div className='divider'>|</div>
             <NavLink to='/search' className='header-link'>
             search
             </NavLink>
@@ -32,6 +32,7 @@ function Header(){
           {user ?
             <>
                 <div className='header-name'>{user.displayName}</div>
+                <div className='divider'>|</div>
                 <div className='' onClick={()=>firebase.logout()}>logout</div>
             </>
             :
