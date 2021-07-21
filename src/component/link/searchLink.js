@@ -18,7 +18,7 @@ function SearchLink() {
       .get()
       .then((snapshot) => {
         snapshot.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
+          return { id: doc.id, ...doc.data() };
         });
         setLinks(link);
       });
@@ -39,7 +39,7 @@ function SearchLink() {
   return (
     <div>
       <div></div>
-      <form>
+      <form onSubmit={handleSearch}>
         Search <input onChange={(event) => setFilter(event.target.value)} />
         <button>Ok</button>
       </form>
