@@ -13,11 +13,11 @@ function SearchLink() {
   }, []);
 
   function getInitialLinks() {
-    const link = firebase.db
+    firebase.db
       .collection("links")
       .get()
       .then((snapshot) => {
-        snapshot.docs.map((doc) => {
+        const link = snapshot.docs.map((doc) => {
           return { id: doc.id, ...doc.data() };
         });
         setLinks(link);
@@ -33,6 +33,7 @@ function SearchLink() {
         link.postedBy.name.toLowerCase().includes(query)
       );
     });
+
     setFilteredLink(matchedLink);
   }
 
