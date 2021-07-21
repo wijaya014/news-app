@@ -28,7 +28,7 @@ function App(){
                         <Route path='/search' component={SearchLink}/>
                         <Route path='/top' component={LinkList}/>
                         <Route path='/new/:page' component={LinkList}/>
-                        <Route path='/new/:linkId' component={LinkDetail} />
+                        <Route path='/link/:linkId' component={LinkDetail} />
                     </Switch>
                 </div>
             </div>
