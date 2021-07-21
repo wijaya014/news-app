@@ -2,16 +2,17 @@ import React from "react";
 import { FirebaseContext } from "../../firebase";
 
 function ForgotPassword() {
-  const { user, firebase } = React.useContext(FirebaseContext);
+  const { firebase } = React.useContext(FirebaseContext);
   const [resetPasswordAndEmail, setResetPasswordAndEmail] = React.useState("");
   const [isReset, setIsReset] = React.useState(false);
   const [resetPasswordError, setResetPasswordError] = React.useState(null);
 
   async function handleForgotPassword() {
     try {
-      await firebase.resetPasswordAndEmail(resetPasswordAndEmail);
+      await firebase.resetPassword(resetPasswordAndEmail);
       setIsReset(true);
       setResetPasswordError(null);
+      setResetPasswordAndEmail("");
     } catch (err) {
       setIsReset(false);
       setResetPasswordAndEmail(err.message);
@@ -22,6 +23,8 @@ function ForgotPassword() {
     <div>
       <input
         type="text"
+        placeholder="input email address"
+        className="input"
         onChange={(event) => setResetPasswordAndEmail(event.target.value)}
       />
       <div>
@@ -29,10 +32,8 @@ function ForgotPassword() {
           send
         </button>
       </div>
-      {isReset && <p>Please check yoour email</p>}
-      {resetPasswordAndEmail && (
-        <p className="error-text">{resetPasswordAndEmail}</p>
-      )}
+      {isReset && <p>Please check your email</p>}
+      {resetPasswordError && <p className="error-text">{resetPasswordError}</p>}
     </div>
   );
 }
